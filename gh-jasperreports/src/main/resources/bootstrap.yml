@@ -1,8 +1,0 @@
-http:
-  encoding.charset: UTF-8
-  encoding.enable: true
-  encoding.force: true
-
-web:
-  agent:
-    predicate-name: msf-wr

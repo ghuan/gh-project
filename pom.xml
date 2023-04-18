@@ -9,20 +9,60 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.gh</groupId>
+    <groupId>com.gh.boot</groupId>
     <artifactId>spring-boot-projects</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-projects</name>
     <packaging>pom</packaging>
 
     <modules>
+        <module>gh-commons-web</module>
         <module>gh-jasperreports</module>
+        <module>gh-jasperreports-server</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
         <spring-boot.version>2.2.13.RELEASE</spring-boot.version>
+        <hutool.version>5.5.7</hutool.version>
     </properties>
+
+    <dependencies>
+        <!--Lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--测试依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.gh.boot</groupId>
+                <artifactId>gh-commons-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gh.boot</groupId>
+                <artifactId>gh-jasperreports</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <!-- 配置远程发布到云效，mvn deploy -->
     <distributionManagement>
         <repository>

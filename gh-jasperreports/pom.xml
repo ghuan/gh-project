@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.gh</groupId>
+        <groupId>com.gh.boot</groupId>
         <artifactId>spring-boot-projects</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -11,35 +11,59 @@
     <artifactId>gh-jasperreports</artifactId>
     <name>gh-jasperreports</name>
     <packaging>jar</packaging>
-    <description>gh-jasperreports</description>
+    <description>gh-jasperreports 报表功能包</description>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.gh.boot</groupId>
+            <artifactId>gh-commons-web</artifactId>
         </dependency>
-
+        <!-- jasperreports-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>5.1.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.lowagie</groupId>
+                    <artifactId>itext</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-fonts</artifactId>
+            <version>5.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.4.11</version>
+        </dependency>
+        <!-- pdf显示中文字体 -->
+        <dependency>
+            <groupId>com.msf</groupId>
+            <artifactId>iText</artifactId>
+            <version>2.1.7.js2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.msf</groupId>
+            <artifactId>iTextAsian</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.9</version>
         </dependency>
     </dependencies>
 
     <build>
+        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <!-- deploy忽略-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
             </plugin>
         </plugins>
     </build>
