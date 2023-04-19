@@ -16,13 +16,12 @@
     <dependencies>
         <dependency>
             <groupId>com.gh.boot</groupId>
-            <artifactId>gh-commons-web</artifactId>
+            <artifactId>gh-common-web</artifactId>
         </dependency>
         <!-- jasperreports-->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
-            <version>5.1.2</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.lowagie</groupId>
@@ -33,39 +32,24 @@
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports-fonts</artifactId>
-            <version>5.6.1</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
-            <version>2.4.11</version>
         </dependency>
         <!-- pdf显示中文字体 -->
         <dependency>
             <groupId>com.msf</groupId>
             <artifactId>iText</artifactId>
-            <version>2.1.7.js2</version>
         </dependency>
         <dependency>
             <groupId>com.msf</groupId>
             <artifactId>iTextAsian</artifactId>
-            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>3.9</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <finalName>${project.name}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

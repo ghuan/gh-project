@@ -11,12 +11,24 @@
     <artifactId>gh-jasperreports-server</artifactId>
     <name>gh-jasperreports-server</name>
     <packaging>jar</packaging>
-    <description>gh-jasperreports-server</description>
+    <description>gh-jasperreports-server 报表springboot应用</description>
 
     <dependencies>
         <dependency>
             <groupId>com.gh.boot</groupId>
             <artifactId>gh-jasperreports</artifactId>
+            <exclusions>
+                <!--排除tomcat依赖-->
+                <exclusion>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--undertow容器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
     </dependencies>
 
