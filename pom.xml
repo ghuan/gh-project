@@ -18,6 +18,8 @@
     <modules>
         <module>gh-common-core</module>
         <module>gh-common-web</module>
+        <module>gh-api-doc</module>
+        <module>gh-api-doc-server</module>
         <module>gh-jasperreports</module>
         <module>gh-jasperreports-server</module>
     </modules>
@@ -33,6 +35,7 @@
         <iText.version>2.1.7.js2</iText.version>
         <iTextAsian.version>1.0.0</iTextAsian.version>
         <apache.poi.version>3.9</apache.poi.version>
+        <fastjson.version>1.2.83</fastjson.version>
     </properties>
 
     <dependencies>
@@ -58,7 +61,11 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
             <!-- jasperreports-->
             <dependency>
                 <groupId>net.sf.jasperreports</groupId>
@@ -101,6 +108,11 @@
             <dependency>
                 <groupId>com.gh.boot</groupId>
                 <artifactId>gh-common-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gh.boot</groupId>
+                <artifactId>gh-api-doc</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

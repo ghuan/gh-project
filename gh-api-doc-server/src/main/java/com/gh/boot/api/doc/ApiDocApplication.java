@@ -1,4 +1,4 @@
-package com.gh.boot.jasperreports;
+package com.gh.boot.api.doc;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
@@ -15,14 +15,14 @@ import java.net.UnknownHostException;
 @SpringBootApplication
 @ComponentScan(basePackages = {
         "com.gh.boot.common",
-        "com.gh.boot.jasperreports"
+        "com.gh.boot.api.doc"
 })
 @Slf4j
-public class JasperreportsApplication {
+public class ApiDocApplication {
 
     public static void main(String[] args) throws UnknownHostException {
         ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder()
-                .sources(JasperreportsApplication.class)
+                .sources(ApiDocApplication.class)
                 .run(args);
         Environment env = applicationContext.getEnvironment();
         String protocol = Boolean.valueOf(env.getProperty("server.ssl.enabled")) ? "https" : "http";
