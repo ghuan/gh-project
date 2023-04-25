@@ -1,8 +1,13 @@
 package com.gh.boot.common.web.exception;
 
+import com.gh.boot.common.web.data.R;
+import com.gh.boot.common.web.exception.enums.ResponseEnum;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.validation.BindException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -27,9 +32,35 @@ public class GlobalExceptionHandler {
 	 */
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	public Object exception(Exception e) {
+	public R exception(Exception e) {
 		log.error("全局异常信息 ex={}", e.getMessage(), e);
-		return null;
+		return R.fail(e.getMessage());
+	}
+
+	/**
+	 * 非法参数验证异常
+	 *
+	 * @param ex
+	 * @return
+	 */
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler({BindException.class})
+	public R handleException(BindException ex) {
+		String message = ex.getBindingResult().getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).findFirst().get();
+		return R.fail(ResponseEnum.BAD_REQUEST, message);
+	}
+
+	/**
+	 * 非法参数验证异常
+	 *
+	 * @param ex
+	 * @return
+	 */
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ExceptionHandler({MethodArgumentNotValidException.class})
+	public R handleException(MethodArgumentNotValidException ex) {
+		String message = ex.getBindingResult().getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).findFirst().get();
+		return R.fail(ResponseEnum.BAD_REQUEST, message);
 	}
 //	/**
 //	 * 未登陆异常信息

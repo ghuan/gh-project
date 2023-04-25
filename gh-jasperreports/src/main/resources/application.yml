@@ -5,4 +5,10 @@ http:
 
 web:
   agent:
-    predicate-name: msf-wr
+    predicate-name: gh-wr
+springdoc:
+  model-and-view-allowed: true
+  api-docs:
+    title: 报表服务api接口文档
+    description: 报表服务api接口文档
+    terms-of-service: https://github.com/ghuan

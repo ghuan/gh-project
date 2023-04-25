@@ -1,7 +1,10 @@
 server:
   port: 1001
-spring:
-  application:
-    name: jasperreports
   profiles:
-    active: pro
+    active: dev
+springdoc:
+  model-and-view-allowed: true
+  api-docs:
+    title: 报表服务api接口文档
+    description: 报表服务api接口文档
+    terms-of-service: https://github.com/ghuan

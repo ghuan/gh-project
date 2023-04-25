@@ -3,6 +3,7 @@ package com.gh.boot.jasperreports.data.po;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * @desc: 报表入参
@@ -12,6 +13,6 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class ReportPO {
 
-    @NotBlank(message = "文档类型不能为空")
+    @NotEmpty(message = "文档类型不能为空")
     private String docType;
 }

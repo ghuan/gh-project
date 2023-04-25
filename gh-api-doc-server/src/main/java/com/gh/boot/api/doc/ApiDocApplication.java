@@ -1,12 +1,14 @@
 package com.gh.boot.api.doc;
 
-import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
+import com.gh.boot.api.doc.config.SwaggerConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.core.env.Environment;
 
 import java.net.InetAddress;
@@ -16,7 +18,9 @@ import java.net.UnknownHostException;
 @ComponentScan(basePackages = {
         "com.gh.boot.common",
         "com.gh.boot.api.doc"
-})
+}
+//,excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = {SwaggerConfig.class})
+)
 @Slf4j
 public class ApiDocApplication {
 

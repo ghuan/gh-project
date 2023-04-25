@@ -15,8 +15,10 @@ import java.net.UnknownHostException;
 @SpringBootApplication
 @ComponentScan(basePackages = {
         "com.gh.boot.common",
-        "com.gh.boot.jasperreports"
+        "com.gh.boot.jasperreports",
+        "com.gh.boot.api.doc"
 })
+
 @Slf4j
 public class JasperreportsApplication {
 
