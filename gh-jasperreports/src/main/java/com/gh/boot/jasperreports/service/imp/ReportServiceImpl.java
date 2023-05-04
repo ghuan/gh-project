@@ -1,20 +1,37 @@
 package com.gh.boot.jasperreports.service.imp;
 
-import com.gh.boot.jasperreports.data.po.ReportPO;
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.lang.UUID;
+import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.StrUtil;
+import com.gh.boot.common.core.data.AppResource;
+import com.gh.boot.common.core.exception.ExceptionCodeEnum;
+import com.gh.boot.common.core.util.ResourceUtil;
+import com.gh.boot.jasperreports.data.dto.ReportBuilderDTO;
+import com.gh.boot.jasperreports.data.dto.ReportDataDTO;
+import com.gh.boot.jasperreports.enums.DocType;
 import com.gh.boot.jasperreports.service.IReportService;
+import com.gh.boot.jasperreports.view.ReportView;
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRMapCollectionDataSource;
 import net.sf.jasperreports.engine.design.*;
 import net.sf.jasperreports.engine.type.VerticalAlignEnum;
-import org.springframework.beans.factory.annotation.Autowired;
+import net.sf.jasperreports.engine.type.WhenNoDataTypeEnum;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.annotation.Resource;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -23,25 +40,24 @@ import java.util.Map;
 @Service
 public class ReportServiceImpl implements IReportService {
 
-	protected final String docType="docType";
-	protected final String inline="inline";
-	protected final String fileName="fileName";
-	protected final String params = "params";//前台url自定义传参，base64加密的对象json字符串
 	protected final String path = "prints";
 	protected final String suffix = ".jrxml";
-	protected final String handler = "handler";//自定义数据处理类
-	protected final String handlerFileSuffix="Handler";//默认后台数据处理类后缀 如TestHandler.java
 	protected final String subReportDir = "SUBREPORT_DIR";//父报表加载子报表传递的子报表所在绝对路径
 
-	@Value("${web.report.px-image-url:}")
-	private String pxImageUrl;//报表px图片完整地址目录配置，用于报表px图片地址修正
+	@Value("${jasperreports.px-image-server-address:}")
+	private String pxImageServerAddress;//报表px图片所在服务地址，用于报表px图片地址修正
 
-	@Autowired
-	private Environment env;
+	@Resource
+	private Validator validator;
 
 	@Override
-	public ModelAndView getReport(String reportName, ReportPO reportPO) {
-//		try{
+	public ModelAndView buildReport(ReportBuilderDTO reportBuilderDTO) {
+		//参数校验
+		Set<ConstraintViolation<Object>> validate = validator.validate(reportBuilderDTO);
+		for (ConstraintViolation<Object> model : validate) {
+			throw ExceptionCodeEnum.BAD_REQUEST.newException(model.getMessage());
+		}
+		try{
 //			String tokenValue = parameters.get(token)+"";
 //			if(VTools.StringIsEmpty(tokenValue)){
 //				throw new BusinessException("当前链接已失效，请尝试重新登陆");
@@ -53,89 +69,97 @@ public class ReportServiceImpl implements IReportService {
 //			if(SecurityUtils.getMsfUser() == null){
 //				throw new BusinessException("当前链接已失效，请尝试重新登陆");
 //			}
-//			if(StrUtil.isEmpty(reportName)){
-//				throw new BusinessException("pathName[reportName] can not empty");
-//			}
-//			String docTypeName = parameters.get(docType)+"";
-//			String inlineStr = parameters.get(inline)+"";
-//			String handlerClassName = parameters.get(handler)+"";
-//			String fileNameStr = parameters.get(fileName)+"";
-//			String paramsStr = parameters.get(params)+"";
-//			String reportFilePath = path+"/"+reportName+suffix;
-//			if(StrUtil.isEmpty(docTypeName)){
-//				docTypeName = DocType.HTML.getTypeName();
-//			}
-//			boolean isInline = true;
-//			if(StrUtil.isNotEmpty(inlineStr) && "false".equals(inlineStr)){
-//				isInline = false;
-//			}
-//			if(StrUtil.isEmpty(handlerClassName)){
-//				handlerClassName = reportName+handlerFileSuffix;
-//			}
-//			IReportHandler handler;
-//			String errorMsg = "";
-//			try{
-//				handler = SpringContextHolder.getBean(handlerClassName);
-//			}catch (Exception e){
-//				try{
-//					handlerClassName = handlerClassName.substring(0, 1).toLowerCase() + handlerClassName.substring(1);
-//					handler = SpringContextHolder.getBean(handlerClassName);
-//				}catch (Exception e1){
-//					errorMsg += e1.getMessage();
-//					try{
-//						handlerClassName = handlerClassName.substring(0, 1).toUpperCase() + handlerClassName.substring(1);
-//						handler = SpringContextHolder.getBean(handlerClassName);
-//					}catch (Exception e2){
-//						errorMsg += " " + e2.getMessage();
-//						throw new BusinessException(errorMsg);
-//					}
-//				}
-//
-//			}
-//			errorMsg = "";
-//			ResourceDTO resourceDTO = VTools.getResource(reportFilePath);
-//			if(resourceDTO == null){
-//				reportFilePath = path+"/"+ reportName.substring(0, 1).toLowerCase() + reportName.substring(1)+suffix;
-//				resourceDTO = VTools.getResource(reportFilePath);
-//				if(resourceDTO == null){
-//					errorMsg += "未找到报表配置文件["+ reportFilePath;
-//					reportFilePath = path+"/"+ reportName.substring(0, 1).toUpperCase() + reportName.substring(1)+suffix;
-//					resourceDTO = VTools.getResource(reportFilePath);
-//					if(resourceDTO == null){
-//						errorMsg += ","+ reportFilePath+"]";
-//						throw new BusinessException(errorMsg);
-//					}
-//				}
-//			}
-//			Map<String,Object> paramsMap = new HashMap<>();
-//			if(!VTools.StringIsEmpty(paramsStr)){
-//				byte[] paramsBytes = Base64Utils.decodeFromString(paramsStr);
-//				String paramsJsonStr = new String(paramsBytes);
-//				paramsMap = GsonUtils.fromJson(paramsJsonStr,Map.class);
-//			}
-//			InputStream inputStream = resourceDTO.getInputStream();
-//			JasperDesign jd = JRXmlLoader.load(inputStream);
-//			addDefaultStyle(jd,getBaseStyle());
-//			jd.setWhenNoDataType(WhenNoDataTypeEnum.ALL_SECTIONS_NO_DETAIL);
-//			fixMissingParamAndField(jd);
-//			Map<String, Object> map = handler.getParameters(paramsMap);
-//			if(map == null){
-//				map = new HashMap<>();
-//			}
-//			//子报表设置parameter:subReportDir
-//			map.put(subReportDir,resourceDTO.getParentPath());
-//			List dataList = handler.getFields(paramsMap);
-//			if(!VTools.ListIsEmpty(dataList)){
-//				map.put("ds", new JRMapCollectionDataSource(dataList));
-//			}
-//			String pxImageUrl = env.getProperty(pxImageUrlCfg);
-//			return new ModelAndView(new ReportView(jd,docTypeName,isInline,fileNameStr,pxImageUrl), map);
-//		}catch (Exception e){
-//			e.printStackTrace();
-//			throw new BusinessException(e.getMessage(),e);
-//		}
-		return null;
+			String templateFileName = reportBuilderDTO.getTemplateFileName();
+			DocType docType = reportBuilderDTO.getDocType();
+			String docTypeName = docType == null ? DocType.HTML.getTypeName() : docType.getTypeName();
+			Boolean isInline = reportBuilderDTO.getInline();
+			String targetFileName = reportBuilderDTO.getTargetFileName();
+			targetFileName = StrUtil.isEmpty(targetFileName) ? DatePattern.PURE_DATETIME_FORMAT.format(new Date()) : targetFileName;
+			String reportFilePath = path+"/"+templateFileName+suffix;
+			if(StrUtil.isEmpty(docTypeName)){
+				docTypeName = DocType.HTML.getTypeName();
+			}
+			isInline = isInline == null ? true : isInline;
+			AppResource appResource = getReportResource(reportFilePath,templateFileName);
+			InputStream inputStream = appResource.getInputStream();
+			JasperDesign jd = JRXmlLoader.load(inputStream);
+			addDefaultStyle(jd,getBaseStyle());
+			jd.setWhenNoDataType(WhenNoDataTypeEnum.ALL_SECTIONS_NO_DETAIL);
+			fixMissingParamAndField(jd);
+			Map<String, Object> map = new HashMap<>();
+			if(reportBuilderDTO.getData()!=null){
+				ReportDataDTO reportDataDTO = reportBuilderDTO.getData();
+				map = BeanUtil.beanToMap(reportDataDTO);
+				List ds = reportDataDTO.getList();
+				if(CollectionUtil.isNotEmpty(ds)){
+					map.remove("list");
+					map.put("ds", recursiveGetDataSource(ds));
+				}
+			}
+			//子报表设置parameter:subReportDir
+			if(StrUtil.isNotEmpty(reportBuilderDTO.getSubReportDir())){
+				map.remove("subReportDir");
+				map.put(reportBuilderDTO.getSubReportDir(),appResource.getParentPath());
+			}else{
+				map.put(subReportDir,appResource.getParentPath());
+			}
+			return new ModelAndView(new ReportView(jd,docTypeName,isInline,targetFileName,pxImageServerAddress), map);
+		}catch (Exception e){
+			e.printStackTrace();
+			throw ExceptionCodeEnum.INTERNAL_SERVER_ERROR.newException(e.getMessage(),e);
+		}
 	}
+
+	/**
+	 * @desc 递归获取数据
+	 * @date 2023/5/4 10:32
+	 * @author tianma
+	 */
+	private JRMapCollectionDataSource recursiveGetDataSource(List list){
+		if(CollectionUtil.isEmpty(list)){
+			return new JRMapCollectionDataSource(new ArrayList<>());
+		}
+		return new JRMapCollectionDataSource((Collection<Map<String, ?>>) list.stream().map(d -> {
+			Map<String, Object> map = BeanUtil.beanToMap(d,false,true);
+			if(MapUtil.isNotEmpty(map)){
+				map.keySet().forEach(k -> {
+					if(map.get(k) instanceof List){
+						map.put(k,recursiveGetDataSource((List) map.get(k)));
+					}
+				});
+			}
+			return map;
+		}).collect(Collectors.toList()));
+	}
+
+	/**
+	 * @desc 获取报表jrxml文件
+	 * @date 2023/4/28 15:19
+	 * @author tianma
+	 */
+	private AppResource getReportResource(String reportFilePath, String reportName){
+		StringBuilder errorMsg = new StringBuilder();
+		try{
+			AppResource appResource = ResourceUtil.getResource(reportFilePath);
+			if(appResource == null){
+				reportFilePath = path+"/"+ reportName.substring(0, 1).toLowerCase() + reportName.substring(1)+suffix;
+				appResource = ResourceUtil.getResource(reportFilePath);
+				if(appResource == null){
+					errorMsg.append("未找到报表配置文件[").append(reportFilePath);
+					reportFilePath = path+"/"+ reportName.substring(0, 1).toUpperCase() + reportName.substring(1)+suffix;
+					appResource = ResourceUtil.getResource(reportFilePath);
+					if(appResource == null){
+						errorMsg.append(",").append(reportFilePath).append("]");
+						throw ExceptionCodeEnum.NOT_FOUND.newException(errorMsg.toString());
+					}
+				}
+			}
+			return appResource;
+		}catch (IOException e){
+			throw ExceptionCodeEnum.NOT_FOUND.newException("获取报表jrxml文件异常",e);
+		}
+	}
+
 	private JRDesignStyle getBaseStyle(){
 		JRDesignStyle base = new JRDesignStyle();
 		base = new JRDesignStyle();
@@ -149,18 +173,19 @@ public class ReportServiceImpl implements IReportService {
 		base.setBlankWhenNull(true);
 		return base;
 	}
+
 	private void addDefaultStyle(JasperDesign design, JRDesignStyle style)
-		throws JRException {
+			throws JRException {
 		HashMap<String, JRStyle> map = (HashMap<String, JRStyle>) design
-			.getStylesMap();
+				.getStylesMap();
 		if (!map.containsKey(style.getName())) {
 			design.addStyle(style);
 		}
 	}
 
 	private void fixMissingParamAndField(JasperDesign design) throws JRException {
-		Map<String, JRParameter> params =  design.getParametersMap();		//parameters
-		Map<String, JRField> fields =  design.getFieldsMap();				//fields
+		Map<String, JRParameter> params =  design.getParametersMap();        //parameters
+		Map<String, JRField> fields =  design.getFieldsMap();                //fields
 		List<JRChild> els = getDesignElements(design);
 		JRDesignStyle base = (JRDesignStyle) design.getStylesMap().get("myBaseStyleName");
 		for(JRChild child:els){
@@ -168,7 +193,7 @@ public class ReportServiceImpl implements IReportService {
 				continue;
 			}
 			JRDesignElement e = (JRDesignElement) child;
-			e.setStyle(base);				//设置base样式
+			e.setStyle(base);                //设置base样式
 			if(!(e instanceof JRDesignTextField)){
 				if(e instanceof JRDesignStaticText){
 					fixPDFFontEncoding((JRDesignStaticText) e, base);

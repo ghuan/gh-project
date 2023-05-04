@@ -4,10 +4,9 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.gh.boot.common.web.annotation.validator.ValueValidator;
-import com.gh.boot.common.web.exception.enums.ResponseEnum;
+import com.gh.boot.common.core.exception.ExceptionCodeEnum;
+import com.gh.boot.common.core.exception.IExceptionEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -50,52 +49,32 @@ public class R<T> implements Serializable {
 		return success(null);
 	}
 
-	public static R<Boolean> success(String msg,Object... args){
-		return success(null,msg,args);
-	}
-
 	public static <T> R<T> success(T data){
 		return success(data,null);
 	}
 
 	public static <T> R<T> success(T data,String msg,Object... args){
-		return fail(ResponseEnum.OK,data,msg,args);
+		return failure(ExceptionCodeEnum.OK,data,msg,args);
 	}
 
 	public static R<Boolean> fail(){
 		return fail(null);
 	}
 
-	public static R<Boolean> fail(String msg,Object... args){
-		return fail(null,msg,args);
-	}
-
 	public static <T> R<T> fail(T data){
-		return fail(null,data);
+		return fail(data,null);
 	}
 
 	public static <T> R<T> fail(T data,String msg,Object... args){
-		return fail(null,data,msg,args);
+		return failure(null,data,msg,args);
 	}
 
-	public static R<Boolean> fail(ResponseEnum responseEnum){
-		return fail(responseEnum,null);
-	}
-
-	public static <T> R<T> fail(ResponseEnum responseEnum,T data){
-		return fail(responseEnum,data,null);
-	}
-
-	public static R<Boolean> fail(ResponseEnum responseEnum,String msg,Object... args){
-		return fail(responseEnum,null,msg,args);
-	}
-
-	public static <T> R<T> fail(ResponseEnum responseEnum,T data,String msg,Object... args){
-		responseEnum = responseEnum == null ? ResponseEnum.INTERNAL_SERVER_ERROR:responseEnum;
-		msg = StrUtil.format(StrUtil.isBlank(msg)?responseEnum.getMessage():msg,args);
+	public static <T> R<T> failure(IExceptionEnum exceptionEnum, T data,String msg,Object... args){
+		exceptionEnum = exceptionEnum == null ? ExceptionCodeEnum.INTERNAL_SERVER_ERROR: exceptionEnum;
+		msg = StrUtil.format(StrUtil.isBlank(msg)? exceptionEnum.getMessage():msg,args);
 		return (R<T>)R.builder()
-				.code(responseEnum.getCode())
-				.success(NumberUtil.equals(responseEnum.getCode(),ResponseEnum.OK.getCode()))
+				.code(exceptionEnum.getCode())
+				.success(NumberUtil.equals(exceptionEnum.getCode(), ExceptionCodeEnum.OK.getCode()))
 				.time(LocalDateTime.now())
 				.data(data)
 				.msg(msg)
