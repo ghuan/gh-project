@@ -1,3 +1,1 @@
-# spring-boot-project
-
-spring-boot 相关插件和应用
+# gh-api-doc-server (springdoc应用示例)

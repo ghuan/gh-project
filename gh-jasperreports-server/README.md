@@ -1,3 +1,1 @@
-# spring-boot-project
-
-spring-boot 相关插件和应用
+# gh-jasperreports-server (jasperreports报表服务示例)
