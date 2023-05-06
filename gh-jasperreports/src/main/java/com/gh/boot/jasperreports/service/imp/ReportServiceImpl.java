@@ -7,6 +7,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
+import com.gh.boot.common.core.constants.ProjectConstants;
 import com.gh.boot.common.core.data.AppResource;
 import com.gh.boot.common.core.exception.ExceptionCodeEnum;
 import com.gh.boot.common.core.util.ResourceUtil;
@@ -44,7 +45,7 @@ public class ReportServiceImpl implements IReportService {
 	protected final String suffix = ".jrxml";
 	protected final String subReportDir = "SUBREPORT_DIR";//父报表加载子报表传递的子报表所在绝对路径
 
-	@Value("${jasperreports.px-image-server-address:}")
+	@Value("${"+ ProjectConstants.jasperreports +".px-image-server-address:}")
 	private String pxImageServerAddress;//报表px图片所在服务地址，用于报表px图片地址修正
 
 	@Resource
@@ -166,7 +167,7 @@ public class ReportServiceImpl implements IReportService {
 		base.setName("myBaseStyleName");
 		base.setVerticalAlignment(VerticalAlignEnum.MIDDLE);
 		// {{{ fix PDF show chinese
-		base.setFontName("宋体");
+		base.setFontName("SimSun");
 		base.setPdfFontName("STSong-Light");
 		base.setPdfEncoding("UniGB-UCS2-H");
 		// }}}

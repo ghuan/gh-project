@@ -1,5 +1,6 @@
 package com.gh.boot.api.doc.properties;
 
+import com.gh.boot.common.core.constants.ProjectConstants;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -11,9 +12,8 @@ import org.springframework.stereotype.Component;
  * @author tianma
  */
 @Data
-@Component
 @Configuration
-@ConfigurationProperties(prefix = "springdoc.api-docs")
+@ConfigurationProperties(prefix = ProjectConstants.apiDoc)
 public class SpringDocCustomProperties {
     //接口文档标题
     private String title;

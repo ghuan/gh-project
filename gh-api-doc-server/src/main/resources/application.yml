@@ -1,10 +1,6 @@
 server:
   port: 1000
 springdoc:
-  api-docs:
-    title: 测试api接口文档
-    description: 在线测试api接口文档
-    terms-of-service: https://github.com/ghuan
   group-configs:
     - group: '用户模块'
       paths-to-match: '/user/**'
@@ -23,3 +19,8 @@ knife4j:
     enable: false
     username: zhangsan
     password: lisi
+
+api-doc:
+  title: 测试api接口文档
+  description: 在线测试api接口文档
+  terms-of-service: https://github.com/ghuan

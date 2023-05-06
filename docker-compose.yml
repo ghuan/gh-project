@@ -1,0 +1,11 @@
+version: '3'
+services:
+  pig-register:
+    build:
+      context: ./gh-jasperreports-server
+    restart: always
+    ports:
+      - 1001:1001
+    container_name: gh-jasperreports-server
+    hostname: gh-jasperreports-server
+    image: gh-jasperreports-server
