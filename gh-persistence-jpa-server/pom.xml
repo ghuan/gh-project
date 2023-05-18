@@ -8,15 +8,15 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gh-jasperreports-server</artifactId>
-    <name>gh-jasperreports-server</name>
+    <artifactId>gh-persistence-jpa-server</artifactId>
+    <name>gh-persistence-jpa-server</name>
     <packaging>jar</packaging>
-    <description>gh-jasperreports-server 报表springboot应用</description>
+    <description>gh-persistence-jpa-server springboot-data-jpa持久化层应用示例</description>
 
     <dependencies>
         <dependency>
             <groupId>com.gh.boot</groupId>
-            <artifactId>gh-jasperreports</artifactId>
+            <artifactId>gh-common-web</artifactId>
             <exclusions>
                 <!--排除tomcat依赖-->
                 <exclusion>
@@ -24,6 +24,10 @@
                     <groupId>org.springframework.boot</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.gh.boot</groupId>
+            <artifactId>gh-persistence-jpa</artifactId>
         </dependency>
         <!--undertow容器-->
         <dependency>
@@ -39,19 +43,15 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-            </plugin>
             <!-- deploy忽略-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-deploy-plugin</artifactId>-->
-<!--                <version>2.8.2</version>-->
-<!--                <configuration>-->
-<!--                    <skip>true</skip>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

@@ -20,22 +20,26 @@
         <module>gh-common-web</module>
         <module>gh-api-doc</module>
         <module>gh-api-doc-server</module>
+        <module>gh-persistence-jpa</module>
+        <module>gh-persistence-jpa-server</module>
         <module>gh-jasperreports</module>
         <module>gh-jasperreports-server</module>
+        <module>gh-demo-server</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
         <spring-boot.version>2.2.13.RELEASE</spring-boot.version>
         <lombok.version>1.18.20</lombok.version>
-        <hutool.version>5.5.7</hutool.version>
         <jasperreports.version>5.1.2</jasperreports.version>
         <jasperreports-fonts.version>5.6.1</jasperreports-fonts.version>
         <groovy-all.version>2.4.11</groovy-all.version>
+        <hutool.version>5.8.18</hutool.version>
+        <gson.version>2.10.1</gson.version>
         <iText.version>2.1.7.js2</iText.version>
         <iTextAsian.version>1.0.0</iTextAsian.version>
         <apache.poi.version>3.9</apache.poi.version>
-        <fastjson.version>1.2.83</fastjson.version>
+        <knife4j.version>4.1.0</knife4j.version>
     </properties>
 
     <dependencies>
@@ -56,15 +60,17 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--hutool 工具包-->
             <dependency>
                 <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
+                <artifactId>hutool-core</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+            <!-- gson -->
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
             </dependency>
             <!-- jasperreports-->
             <dependency>
@@ -98,7 +104,13 @@
                 <artifactId>poi</artifactId>
                 <version>${apache.poi.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-dependencies</artifactId>
+                <version>${knife4j.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!--gh功能包-->
             <dependency>
                 <groupId>com.gh.boot</groupId>
@@ -108,6 +120,11 @@
             <dependency>
                 <groupId>com.gh.boot</groupId>
                 <artifactId>gh-common-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gh.boot</groupId>
+                <artifactId>gh-persistence-jpa</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -123,6 +140,27 @@
         </dependencies>
     </dependencyManagement>
 
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <configuration>
+                        <finalName>${project.build.finalName}</finalName>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
     <!-- 配置远程发布到云效，mvn deploy -->
     <distributionManagement>
         <repository>

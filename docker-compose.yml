@@ -1,6 +1,6 @@
 version: '3'
 services:
-  pig-register:
+  gh-jasperreports-server:
     build:
       context: ./gh-jasperreports-server
     restart: always

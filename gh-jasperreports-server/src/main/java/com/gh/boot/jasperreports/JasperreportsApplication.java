@@ -14,10 +14,13 @@ import java.net.UnknownHostException;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {
-        "com.gh.boot.common",
-        "com.gh.boot.jasperreports",
-        "com.gh.boot.api.doc"
-})
+        "com.gh.boot",//全部扫描
+//        或自定义设置扫描路径
+//        "com.gh.boot.common",
+//        "com.gh.boot.api.doc"
+}
+//,excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = {SwaggerConfig.class})
+)
 
 @Slf4j
 public class JasperreportsApplication {

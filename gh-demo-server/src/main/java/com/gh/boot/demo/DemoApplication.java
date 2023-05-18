@@ -1,4 +1,4 @@
-package com.gh.boot.api.doc;
+package com.gh.boot.demo;
 
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -21,11 +21,11 @@ import java.net.UnknownHostException;
 //,excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = {SwaggerConfig.class})
 )
 @Slf4j
-public class ApiDocApplication {
+public class DemoApplication {
 
     public static void main(String[] args) throws UnknownHostException {
         ConfigurableApplicationContext applicationContext = new SpringApplicationBuilder()
-                .sources(ApiDocApplication.class)
+                .sources(DemoApplication.class)
                 .run(args);
         Environment env = applicationContext.getEnvironment();
         String protocol = Boolean.valueOf(env.getProperty("server.ssl.enabled")) ? "https" : "http";

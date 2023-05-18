@@ -20,7 +20,7 @@ knife4j:
     username: zhangsan
     password: lisi
 
-api-doc:
+gh-api-doc:
   title: 测试api接口文档
   description: 在线测试api接口文档
   terms-of-service: https://github.com/ghuan

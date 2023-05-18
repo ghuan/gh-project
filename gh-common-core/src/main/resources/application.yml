@@ -1,4 +1,4 @@
-common-core:
+gh-common-core:
   async:
     executor:
       core-pool-size: 10

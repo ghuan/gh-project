@@ -1,5 +1,6 @@
 package com.gh.boot.jasperreports.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import net.sf.jasperreports.j2ee.servlets.ImageServlet;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,7 @@ public class ReportController {
 //    }
 
     @GetMapping(value = "px")
+    @Operation(hidden = true,summary = "报表px图片获取")
     public void px(HttpServletRequest request,
                              HttpServletResponse response) {
         try {

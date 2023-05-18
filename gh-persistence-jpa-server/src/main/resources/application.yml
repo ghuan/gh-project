@@ -1,0 +1,7 @@
+server:
+  port: 1002
+
+gh-api-doc:
+  title: 持久化JPA接口文档
+  description: 持久化JPA接口文档
+  terms-of-service: https://github.com/ghuan

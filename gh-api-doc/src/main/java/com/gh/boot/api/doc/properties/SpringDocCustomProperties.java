@@ -1,10 +1,9 @@
 package com.gh.boot.api.doc.properties;
 
-import com.gh.boot.common.core.constants.ProjectConstants;
+import com.gh.boot.common.core.constants.ConfigPrefixConstants;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 /**
  * @desc api文档配置属性
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = ProjectConstants.apiDoc)
+@ConfigurationProperties(prefix = ConfigPrefixConstants.apiDoc)
 public class SpringDocCustomProperties {
     //接口文档标题
     private String title;

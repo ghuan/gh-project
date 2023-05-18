@@ -17,8 +17,6 @@ springdoc:
     show-extensions: true
   api-docs:
     path: /v3/api-docs
-    title: gh-api-doc
-    description: gh-api-doc
   group-configs:
     - group: '测试'
       paths-to-match: '/test/**'
@@ -40,3 +38,7 @@ knife4j:
     enable: false
     username: zhangsan
     password: lisi
+gh-api-doc:
+  title: 测试api接口文档
+  description: 在线测试api接口文档
+  terms-of-service: https://github.com/ghuan

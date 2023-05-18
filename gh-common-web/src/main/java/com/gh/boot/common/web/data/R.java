@@ -2,7 +2,6 @@ package com.gh.boot.common.web.data;
 
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.gh.boot.common.core.exception.ExceptionCodeEnum;
 import com.gh.boot.common.core.exception.IExceptionEnum;
@@ -41,7 +40,6 @@ public class R<T> implements Serializable {
 	@Schema(description = "响应数据")
 	private T data;
 
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime time;
 
