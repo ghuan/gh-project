@@ -3,20 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.gh.boot</groupId>
-        <artifactId>spring-boot-projects</artifactId>
+        <groupId>com.gh</groupId>
+        <artifactId>gh-project</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gh-api-doc-server</artifactId>
-    <name>gh-api-doc-server</name>
+    <artifactId>gh-common-knife4j-example</artifactId>
+    <name>gh-common-knife4j-example</name>
     <packaging>jar</packaging>
-    <description>gh-api-doc-server api 接口文档 springboot应用</description>
+    <description>example 接口文档 springboot应用示例</description>
 
     <dependencies>
         <dependency>
-            <groupId>com.gh.boot</groupId>
-            <artifactId>gh-api-doc</artifactId>
+            <groupId>com.gh</groupId>
+            <artifactId>gh-common-knife4j</artifactId>
             <exclusions>
                 <!--排除tomcat依赖-->
                 <exclusion>
@@ -29,11 +29,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>${hutool.version}</version>
         </dependency>
     </dependencies>
 

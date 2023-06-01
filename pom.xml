@@ -9,22 +9,14 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.gh.boot</groupId>
-    <artifactId>spring-boot-projects</artifactId>
+    <groupId>com.gh</groupId>
+    <artifactId>gh-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-projects</name>
+    <name>gh-project</name>
     <packaging>pom</packaging>
 
     <modules>
-        <module>gh-common-core</module>
-        <module>gh-common-web</module>
-        <module>gh-api-doc</module>
-        <module>gh-api-doc-server</module>
-        <module>gh-persistence-jpa</module>
-        <module>gh-persistence-jpa-server</module>
-        <module>gh-jasperreports</module>
-        <module>gh-jasperreports-server</module>
-        <module>gh-demo-server</module>
+        <module>gh-common</module>
     </modules>
 
     <properties>
@@ -113,28 +105,23 @@
             </dependency>
             <!--gh功能包-->
             <dependency>
-                <groupId>com.gh.boot</groupId>
+                <groupId>com.gh</groupId>
                 <artifactId>gh-common-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.gh.boot</groupId>
+                <groupId>com.gh</groupId>
                 <artifactId>gh-common-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.gh.boot</groupId>
-                <artifactId>gh-persistence-jpa</artifactId>
+                <groupId>com.gh</groupId>
+                <artifactId>gh-common-knife4j</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.gh.boot</groupId>
-                <artifactId>gh-api-doc</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.gh.boot</groupId>
-                <artifactId>gh-jasperreports</artifactId>
+                <groupId>com.gh</groupId>
+                <artifactId>gh-common-jasperreports</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>

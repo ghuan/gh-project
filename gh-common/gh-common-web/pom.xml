@@ -3,33 +3,33 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.gh.boot</groupId>
-        <artifactId>spring-boot-projects</artifactId>
+        <groupId>com.gh</groupId>
+        <artifactId>gh-project</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gh-api-doc</artifactId>
-    <name>gh-api-doc</name>
+    <artifactId>gh-common-web</artifactId>
+    <name>gh-common-web</name>
     <packaging>jar</packaging>
-    <description>gh-api-doc api接口文档功能包</description>
+    <description>gh-common-web spring-boot-web 公共包</description>
 
     <dependencies>
-        <dependency>
-            <groupId>com.gh.boot</groupId>
-            <artifactId>gh-common-core</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
+            <groupId>com.gh</groupId>
+            <artifactId>gh-common-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
+            <groupId>com.gh</groupId>
+            <artifactId>gh-common-knife4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
-
 </project>

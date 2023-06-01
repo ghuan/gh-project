@@ -3,20 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.gh.boot</groupId>
-        <artifactId>spring-boot-projects</artifactId>
+        <groupId>com.gh</groupId>
+        <artifactId>gh-project</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gh-jasperreports-server</artifactId>
-    <name>gh-jasperreports-server</name>
+    <artifactId>gh-common-jasperreports-example</artifactId>
+    <name>gh-common-jasperreports-example</name>
     <packaging>jar</packaging>
-    <description>gh-jasperreports-server 报表springboot应用</description>
+    <description>jasperreports 报表springboot应用示例</description>
 
     <dependencies>
         <dependency>
-            <groupId>com.gh.boot</groupId>
-            <artifactId>gh-jasperreports</artifactId>
+            <groupId>com.gh</groupId>
+            <artifactId>gh-common-jasperreports</artifactId>
             <exclusions>
                 <!--排除tomcat依赖-->
                 <exclusion>

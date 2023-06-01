@@ -1,6 +1,0 @@
-server:
-  port: 9999
-gh-api-doc:
-  title: 测试demo接口文档
-  description: 测试demo接口文档
-  terms-of-service: https://github.com/ghuan
