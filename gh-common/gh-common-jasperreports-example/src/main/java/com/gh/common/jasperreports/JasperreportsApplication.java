@@ -23,6 +23,7 @@ import java.net.UnknownHostException;
 //,excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = {SwaggerConfig.class})
 //)
 @Slf4j
+@ComponentScan("com.gh.common")
 public class JasperreportsApplication {
 
     public static void main(String[] args) throws UnknownHostException {
