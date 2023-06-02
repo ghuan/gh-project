@@ -5,11 +5,11 @@ spring-boot及spring-cloud微服务相关的一系列解决方案
 
 ### 依赖
 
-| 依赖                          | 版本             |
-|-----------------------------|----------------|
-| JDK                         | 1.8+ ~ 17      |
-| Spring Boot                 | 2.2.13.RELEASE |
-| Spring Cloud                | xxx            |
+| 依赖                          | 版本                  |
+|-----------------------------|---------------------|
+| JDK                         | 1.8+ ~ 15(included) |
+| Spring Boot                 | 2.2.13.RELEASE      |
+| Spring Cloud                | xxx                 |
 
 ### 目录：
 - [gh-common-core (核心包)](gh-common-core)

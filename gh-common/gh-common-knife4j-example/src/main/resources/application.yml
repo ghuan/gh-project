@@ -1,26 +1,29 @@
 server:
   port: 1000
 springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
   group-configs:
-    - group: '用户模块'
-      paths-to-match: '/user/**'
-    - group: '用户模块1'
-      paths-to-match: '/user1/**'
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.gh
 knife4j:
-  enable: true
+  enable: false
   documents:
-    - name: 标题1
-      locations: classpath:markdown/*
-      group: all
-    - name: 标题2
-      locations: classpath:markdown1/*
-      group: 用户模块
+    -
+      group: 2.X版本
+      name: 接口签名
+  setting:
+    language: zh-CN
+    enable-footer-custom: true
+    footer-custom-content: Apache License 2.0 | Copyright  2019-[浙江八一菜刀股份有限公司](https://gitee.com/xiaoym/knife4j)
+  cors: false
+  production: false
   basic:
     enable: false
-    username: zhangsan
-    password: lisi
-
-gh-api-doc:
-  title: 测试api接口文档
-  description: 在线测试api接口文档
-  terms-of-service: https://github.com/ghuan
+    username: test
+    password: 12313
