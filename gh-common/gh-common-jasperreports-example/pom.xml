@@ -30,6 +30,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.gh</groupId>
+            <artifactId>gh-common-knife4j</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

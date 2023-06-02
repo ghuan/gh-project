@@ -1,11 +1,17 @@
 server:
   port: 1001
-springdoc:
-  model-and-view-allowed: true
-gh-api-doc:
-  title: 报表服务api接口文档
-  description: 报表服务api接口文档
-  terms-of-service: https://github.com/ghuan
-gh-jasperreports:
+knife4j:
+  setting:
+    language: zh-CN
+    swagger-model-name: 实体类列表
+    enable-footer-custom: true
+    footer-custom-content: Apache License 2.0 | Copyright  2023 - [github](https://github.com/ghuan)
+  home:
+    title: 报表示例接口文档
+    description: 报表示例接口文档
+    author: huan.gao
+    terms-of-service: github
+    version: 1.0.0
+jasperreports:
   ## 报表px图片所在服务地址，用于报表px图片地址修正
   px-image-server-address: http://localhost:1001/

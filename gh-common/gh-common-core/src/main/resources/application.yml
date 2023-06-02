@@ -1,6 +1,5 @@
-gh-common-core:
-  async:
-    executor:
-      core-pool-size: 10
-      maxPoolSize: 200
-      queue-capacity: 10
+async:
+  executor:
+    core-pool-size: 10
+    maxPoolSize: 200
+    queue-capacity: 10

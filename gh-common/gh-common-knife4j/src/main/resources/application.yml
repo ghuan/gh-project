@@ -5,47 +5,29 @@ spring:
       max-file-size: 100MB
       # 单次请求最大大小
       max-request-size: 100MB
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    tags-sorter: alpha
-    operations-sorter: alpha
-  api-docs:
-    path: /v3/api-docs
-  group-configs:
-    - group: 'default'
-      paths-to-match: '/**'
-      packages-to-scan: com.gh
 knife4j:
   enable: true
-  documents:
-    -
-      group: 2.X版本
-      name: 接口签名
-      locations: classpath:sign/*
   setting:
     language: zh-CN
-    enable-swagger-models: true
-    enable-document-manage: true
     swagger-model-name: 实体类列表
-    enable-version: false
-    enable-reload-cache-parameter: false
-    enable-after-script: true
-    enable-filter-multipart-api-method-type: POST
-    enable-filter-multipart-apis: false
-    enable-request-cache: true
-    enable-host: false
-    enable-host-text: 192.168.0.193:8000
-    enable-home-custom: true
-    home-custom-path: classpath:markdown/home.md
-    enable-search: false
-    enable-footer: false
     enable-footer-custom: true
-    footer-custom-content: Apache License 2.0 | Copyright  2019-[浙江八一菜刀股份有限公司](https://gitee.com/xiaoym/knife4j)
-    enable-dynamic-parameter: false
-    enable-debug: true
-    enable-open-api: false
-    enable-group: true
+    footer-custom-content: Apache License 2.0 | Copyright  2023 - [github](https://github.com/ghuan)
+  home:
+    title: knife4j示例接口文档
+    description: knife4j示例接口文档111
+    author: huan.gao
+    terms-of-service: github
+    version: 1.0.0
+  group-configs:
+
+    - group: '文件相关'
+      paths-to-match: '/download/**'
+      packages-to-scan: com.gh.common.knife4j.controller
+
+    - group: '用户模块'
+      paths-to-match:
+        - '/user/**'
+        - '/download/**'
   cors: false
   production: false
   basic:

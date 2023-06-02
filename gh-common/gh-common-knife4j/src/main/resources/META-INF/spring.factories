@@ -1,0 +1,5 @@
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  com.gh.common.knife4j.config.CustomEnvironmentPostProcessor
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.gh.common.knife4j.config.Knife4jConfig
+

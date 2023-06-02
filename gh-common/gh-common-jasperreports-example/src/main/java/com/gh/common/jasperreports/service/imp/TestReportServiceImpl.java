@@ -3,7 +3,6 @@ package com.gh.common.jasperreports.service.imp;
 import com.gh.common.jasperreports.data.jp.TestReportChildrenData;
 import com.gh.common.jasperreports.data.jp.TestReportData;
 import com.gh.common.jasperreports.data.jp.TestReportListData;
-import com.gh.boot.jasperreports.data.po.*;
 import com.gh.common.jasperreports.data.po.TestReportPO;
 import com.gh.common.jasperreports.enums.DocType;
 import com.gh.common.jasperreports.service.ITestReportService;
@@ -11,7 +10,9 @@ import com.gh.common.jasperreports.view.ReportView;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.*;
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,6 +20,7 @@ import java.util.*;
  */
 @Service
 public class TestReportServiceImpl implements ITestReportService {
+
 	@Override
 	public ModelAndView getTestReport(TestReportPO testReportPO) {
 		TestReportData data = new TestReportData();

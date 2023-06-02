@@ -9,6 +9,8 @@ import cn.hutool.captcha.LineCaptcha;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.extra.servlet.ServletUtil;
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
@@ -28,11 +30,13 @@ import java.nio.charset.StandardCharsets;
  */
 @RestController
 @RequestMapping("download")
+@ApiSupport(author = "xiaoymin@foxmail.com")
 @Tag(name = "文件下载")
 public class DownLoadController {
 
 
     @Operation(summary = "图片预览" )
+    @ApiOperationSupport(author = "xiaoymin@foxmail.com")
     @GetMapping(value = "/image",produces = "image/jpg")
     public void image(HttpServletResponse response) throws IOException {
         //创建临时文件

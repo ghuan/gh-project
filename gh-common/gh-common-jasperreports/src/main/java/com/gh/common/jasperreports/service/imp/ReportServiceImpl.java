@@ -5,7 +5,6 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
-import com.gh.common.core.constants.ConfigPrefixConstants;
 import com.gh.common.core.data.AppResource;
 import com.gh.common.core.exception.ExceptionCodeEnum;
 import com.gh.common.core.util.ResourceUtil;
@@ -43,7 +42,7 @@ public class ReportServiceImpl implements IReportService {
 	protected final String suffix = ".jrxml";
 	protected final String subReportDir = "SUBREPORT_DIR";//父报表加载子报表传递的子报表所在绝对路径
 
-	@Value("${"+ ConfigPrefixConstants.jasperreports +".px-image-server-address:}")
+	@Value("${jasperreports.px-image-server-address:}")
 	private String pxImageServerAddress;//报表px图片所在服务地址，用于报表px图片地址修正
 
 	@Resource
