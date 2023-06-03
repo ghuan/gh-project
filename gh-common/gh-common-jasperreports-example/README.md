@@ -1,1 +1,1 @@
-# gh-jasperreports-server (jasperreports报表服务示例)
+# gh-common-jasperreports (jasperreports报表功能示例)

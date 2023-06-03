@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>com.gh</groupId>
-            <artifactId>gh-common-knife4j</artifactId>
+            <artifactId>gh-common-web</artifactId>
             <exclusions>
                 <!--排除tomcat依赖-->
                 <exclusion>
@@ -29,6 +29,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.gh</groupId>
+            <artifactId>gh-common-knife4j</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>

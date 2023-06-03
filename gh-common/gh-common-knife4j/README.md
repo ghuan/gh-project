@@ -1,4 +1,4 @@
-# gh-api-doc (springdoc功能包)
+# gh-common-knife4j (knife4j接口文档功能包封装)
 
 ### 配置
 ```
@@ -9,36 +9,32 @@ spring:
       max-file-size: 100MB
       # 单次请求最大大小
       max-request-size: 100MB
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    tags-sorter: alpha
-    operations-sorter: alpha
-    show-extensions: true
-  api-docs:
-    path: /v3/api-docs
-  group-configs:
-    - group: '测试'
-      paths-to-match: '/test/**'
-      packages-to-scan: com.gh.boot
-  default-flat-param-object: false
 knife4j:
   enable: true
   setting:
-    language: zh_cn
+    language: zh-CN
     swagger-model-name: 实体类列表
-  documents:
-    - name: 标题1
-      locations: classpath:markdown/*
-      group: default
-    - name: 标题2
-      locations: classpath:markdown1/*
-      group: 用户模块
+    enable-footer-custom: true
+    footer-custom-content: Apache License 2.0 | Copyright  2023 - [github](https://github.com/ghuan)
+  home:
+    title: knife4j示例接口文档
+    description: knife4j示例接口文档111
+    author: huan.gao
+    terms-of-service: github
+    version: 1.0.0
+  group-configs:
+
+    - group: '文件相关'
+      paths-to-match: '/download/**'
+      packages-to-scan: com.gh.common.knife4j.controller
+
+    - group: '用户模块'
+      paths-to-match:
+        - '/user/**'
+        - '/download/**'
+  cors: false
+  production: false
   basic:
     enable: false
-    username: zhangsan
-    password: lisi
-gh-api-doc:
-  title: 测试api接口文档
-  description: 在线测试api接口文档
-  terms-of-service: https://github.com/ghuan
+    username: test
+    password: 12313

@@ -127,12 +127,11 @@ public class ReportView extends AbstractView {
 
 	public static class ReportViewBuilder {
 		private ReportBuilderDTO reportBuilderDTO;
-
-		private IReportService reportService;
+		private ReportViewGenerator reportViewGenerator;
 
 		private ReportViewBuilder(){
 			this.reportBuilderDTO = ReportBuilderDTO.builder().build();
-			this.reportService = SpringContextHolder.getBean(IReportService.class);
+			this.reportViewGenerator = SpringContextHolder.getBean(ReportViewGenerator.class);
 		}
 
 		public ReportViewBuilder docType(DocType docType){
@@ -172,7 +171,7 @@ public class ReportView extends AbstractView {
 		}
 
 		public ModelAndView build(){
-			return this.reportService.buildReport(this.reportBuilderDTO);
+			return this.reportViewGenerator.generate(this.reportBuilderDTO);
 		}
 	}
 }

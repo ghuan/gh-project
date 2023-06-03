@@ -1,1 +1,1 @@
-# gh-api-doc-server (springdoc应用示例)
+# gh-common-knife4j-example (knife4j接口文档示例)
