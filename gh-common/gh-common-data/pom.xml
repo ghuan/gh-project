@@ -4,22 +4,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.gh</groupId>
-        <artifactId>gh-project</artifactId>
+        <artifactId>gh-common</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gh-common</artifactId>
+    <artifactId>gh-common-data</artifactId>
     <packaging>pom</packaging>
 
-    <description>gh 公共聚合模块</description>
+    <description>gh-common-data 各种据访问技术、关系数据库和非关系数据库持久化框架的封装</description>
 
     <modules>
-        <module>gh-common-core</module>
-        <module>gh-common-web</module>
-        <module>gh-common-data</module>
-        <module>gh-common-knife4j</module>
-        <module>gh-common-knife4j-example</module>
-        <module>gh-common-jasperreports</module>
-        <module>gh-common-jasperreports-example</module>
+        <module>gh-common-data-redis</module>
     </modules>
 </project>

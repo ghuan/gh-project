@@ -1,0 +1,23 @@
+# redis
+spring:
+  redis:
+    password:
+    host: 127.0.0.1
+    # 指定数据库实例 默认0
+    database: 0
+    # 连接超时时间
+    timeout: 10000
+    # Lettuce
+    lettuce:
+      # 关闭超时时间
+      shutdown-timeout: 100
+      # 连接池配置
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 8
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: 10000
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池中的最小空闲连接
+        min-idle: 0
