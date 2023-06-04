@@ -1,11 +1,31 @@
 version: '3'
 services:
-  gh-jasperreports-server:
+  gh-common-knife4j-example:
     build:
-      context: ./gh-jasperreports-server
+      context: ./gh-common/gh-common-knife4j-example
+    working_dir: /app
     restart: always
+    #    network_mode: "host"
+    ports:
+      - 1000:1000
+    volumes: # 挂载文件
+      - ./logs/:/app/logs
+    container_name: gh-common-knife4j-example
+    hostname: gh-common-knife4j-example
+    image: gh-common-knife4j-example
+
+  gh-common-jasperreports-example:
+    build:
+      context: ./gh-common/gh-common-jasperreports-example
+    working_dir: /app
+    restart: always
+#    network_mode: "host"
     ports:
       - 1001:1001
-    container_name: gh-jasperreports-server
-    hostname: gh-jasperreports-server
-    image: gh-jasperreports-server
+    volumes: # 挂载文件
+      - ./logs/:/app/logs
+    container_name: gh-common-jasperreports-example
+    hostname: gh-common-jasperreports-example
+    image: gh-common-jasperreports-example
+
+

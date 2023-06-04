@@ -1,8 +1,6 @@
 package com.gh.common.jasperreports.config;
 
 import com.gh.common.jasperreports.controller.ReportPxController;
-import com.gh.common.jasperreports.service.IReportService;
-import com.gh.common.jasperreports.service.imp.ReportServiceImpl;
 import com.gh.common.jasperreports.view.ReportViewGenerator;
 import net.sf.jasperreports.j2ee.servlets.ImageServlet;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

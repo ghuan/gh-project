@@ -6,7 +6,6 @@ import com.gh.common.core.spring.context.holder.SpringContextHolder;
 import com.gh.common.jasperreports.data.dto.ReportBuilderDTO;
 import com.gh.common.jasperreports.data.dto.ReportDataDTO;
 import com.gh.common.jasperreports.enums.DocType;
-import com.gh.common.jasperreports.service.IReportService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.*;
