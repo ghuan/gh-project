@@ -4,7 +4,7 @@ services:
     build:
       context: ./gh-common/gh-common-knife4j-example
     working_dir: /app
-    restart: always
+#    restart: always
     #    network_mode: "host"
     ports:
       - 1000:1000
@@ -18,7 +18,7 @@ services:
     build:
       context: ./gh-common/gh-common-jasperreports-example
     working_dir: /app
-    restart: always
+#    restart: always
 #    network_mode: "host"
     ports:
       - 1001:1001
