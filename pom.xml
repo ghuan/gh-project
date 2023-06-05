@@ -32,6 +32,7 @@
         <iTextAsian.version>1.0.0</iTextAsian.version>
         <apache.poi.version>3.9</apache.poi.version>
         <knife4j.version>4.1.0</knife4j.version>
+        <redisson-spring-boot-starter.version>3.14.1</redisson-spring-boot-starter.version>
     </properties>
 
     <dependencies>
@@ -103,6 +104,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- redisson 依赖 包含了 spring data redis-->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson-spring-boot-starter.version}</version>
+            </dependency>
             <!--gh功能包-->
             <dependency>
                 <groupId>com.gh</groupId>
@@ -112,6 +119,11 @@
             <dependency>
                 <groupId>com.gh</groupId>
                 <artifactId>gh-common-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.gh</groupId>
+                <artifactId>gh-common-data-redis</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

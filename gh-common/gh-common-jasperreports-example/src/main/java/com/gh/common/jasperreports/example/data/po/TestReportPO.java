@@ -3,7 +3,6 @@ package com.gh.common.jasperreports.example.data.po;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 /**
  * @desc: 测试报表入参

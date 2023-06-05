@@ -1,3 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.gh.common.data.redis.config.RedisConfig
+    com.gh.common.data.redis.config.RedisConfig,\
+    com.gh.common.data.redis.config.RedissonConfig
 

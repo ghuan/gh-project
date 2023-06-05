@@ -1,5 +1,5 @@
 # gh-common-data-redis 
-## spring-data-redis封装及reddison封装
+## spring-data-redis封装及redisson封装
 
 ### 配置
 ```

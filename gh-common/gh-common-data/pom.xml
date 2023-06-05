@@ -15,5 +15,6 @@
 
     <modules>
         <module>gh-common-data-redis</module>
+        <module>gh-common-data-redis-example</module>
     </modules>
 </project>

@@ -19,6 +19,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 
 /**
@@ -28,14 +29,13 @@ import java.text.SimpleDateFormat;
  */
 @Configuration
 @EnableCaching
-@AllArgsConstructor
 @Import({RedisUtil.class})
 public class RedisConfig {
 
-    private final LettuceConnectionFactory factory;
+    @Resource
+    private LettuceConnectionFactory factory;
 
     @Bean
-    @ConditionalOnMissingBean
     public RedisTemplate<String, Object> redisTemplate() {
 
         Jackson2JsonRedisSerializer jacksonSeial = new Jackson2JsonRedisSerializer(Object.class);
@@ -61,7 +61,6 @@ public class RedisConfig {
      * 缓存配置管理器
      */
     @Bean
-    @ConditionalOnMissingBean
     public CacheManager cacheManager() {
         //以锁写入的方式创建RedisCacheWriter对象
         RedisCacheWriter writer = RedisCacheWriter.nonLockingRedisCacheWriter(factory);
