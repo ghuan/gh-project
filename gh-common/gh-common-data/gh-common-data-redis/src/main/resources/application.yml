@@ -8,13 +8,13 @@ spring:
     timeout: 10000
 
     # 单机
-    # host: 10.210.10.154
-    # port: 7004
-
+    host: 127.0.0.1
+    port: 6379
+    database: 0
     # 集群
-    cluster:
-      nodes: 10.210.13.203:6381,10.210.13.203:6382,10.210.13.203:6383,10.210.13.203:6384,10.210.13.203:6385,10.210.13.203:6386
-      maxRedirects: 3
+#    cluster:
+#      nodes: 10.210.13.203:6381,10.210.13.203:6382,10.210.13.203:6383,10.210.13.203:6384,10.210.13.203:6385,10.210.13.203:6386
+#      maxRedirects: 3
 
     # 连接池
     lettuce:
@@ -30,34 +30,34 @@ spring:
     # ====================================================================================
     # spring-redis-redisson
     # ====================================================================================
-    redisson:
-      # file: classpath:redisson.yaml
-      config: |
-        # 单机
-        # singleServerConfig:
-            # password: null
-            # timeout: 10000
-            # address: redis://10.210.10.154:7004
-
-        # 集群
-        clusterServersConfig:
-            nodeAddresses:
-            - "redis://10.210.13.203:6381"
-            - "redis://10.210.13.203:6382"
-            - "redis://10.210.13.203:6383"
-            - "redis://10.210.13.203:6384"
-            - "redis://10.210.13.203:6385"
-            - "redis://10.210.13.203:6386"
-            password: null
-            loadBalancer: !<org.redisson.connection.balancer.RoundRobinLoadBalancer> {}
-            slaveConnectionMinimumIdleSize: 8
-            slaveConnectionPoolSize: 16
-            sslEnableEndpointIdentification: false
-            timeout: 3000
-
-        # 所有Redis节点客户端之间共享的线程数量，默认值: 当前处理核数量 * 2
-        threads: 24
-        # Netty线程池数量，默认值: 当前处理核数量 * 2
-        nettyThreads: 12
-        # 传输模式，默认值：NIO
-        transportMode: NIO
+#    redisson:
+#      # file: classpath:redisson.yaml
+#      config: |
+#        # 单机
+#        # singleServerConfig:
+#            # password: null
+#            # timeout: 10000
+#            # address: redis://10.210.10.154:7004
+#
+#        # 集群
+#        clusterServersConfig:
+#            nodeAddresses:
+#            - "redis://10.210.13.203:6381"
+#            - "redis://10.210.13.203:6382"
+#            - "redis://10.210.13.203:6383"
+#            - "redis://10.210.13.203:6384"
+#            - "redis://10.210.13.203:6385"
+#            - "redis://10.210.13.203:6386"
+#            password: null
+#            loadBalancer: !<org.redisson.connection.balancer.RoundRobinLoadBalancer> {}
+#            slaveConnectionMinimumIdleSize: 8
+#            slaveConnectionPoolSize: 16
+#            sslEnableEndpointIdentification: false
+#            timeout: 3000
+#
+#        # 所有Redis节点客户端之间共享的线程数量，默认值: 当前处理核数量 * 2
+#        threads: 24
+#        # Netty线程池数量，默认值: 当前处理核数量 * 2
+#        nettyThreads: 12
+#        # 传输模式，默认值：NIO
+#        transportMode: NIO
